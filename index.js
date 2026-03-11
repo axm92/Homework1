@@ -15,7 +15,8 @@ hamburger.addEventListener('click', () => {
   document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
 });
 
-function closeMenu() {
+function closeMenu() 
+{
   hamburger.classList.remove('open');
   mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
@@ -33,7 +34,6 @@ function switchTab(id, event)
 // gallery slider
 const track = document.getElementById('galleryTrack');
 const slides = track.querySelectorAll('.gallery-slide');
-const dotsContainer = document.getElementById('sliderDots');
 let current = 0;
 
 function getSlidesVisible() 
@@ -46,18 +46,6 @@ function getSlidesVisible()
 function totalGroups() 
 {
   return slides.length - getSlidesVisible() + 1;
-}
-
-function buildDots() 
-{
-  dotsContainer.innerHTML = '';
-  const n = totalGroups();
-  for (let i = 0; i < n; i++) {
-    const d = document.createElement('div');
-    d.className = 'slider-dot' + (i === current ? ' active' : '');
-    d.onclick = () => goTo(i);
-    dotsContainer.appendChild(d);
-  }
 }
 
 function goTo(index) 
@@ -73,15 +61,6 @@ function goTo(index)
 document.getElementById('prevBtn').onclick = () => goTo(current - 1);
 document.getElementById('nextBtn').onclick = () => goTo(current + 1);
 
-// Auto-play: advances every 4 seconds, pauses on hover
-let autoPlay = setInterval(() => goTo((current + 1) % totalGroups()), 4000);
-track.parentElement.addEventListener('mouseenter', () => clearInterval(autoPlay));
-track.parentElement.addEventListener('mouseleave', () => {
-  autoPlay = setInterval(() => goTo((current + 1) % totalGroups()), 4000);
-});
-
-buildDots();
-window.addEventListener('resize', () => { buildDots(); goTo(0); });
 
 // contact form
 function submitForm() {
