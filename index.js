@@ -50,20 +50,25 @@ function totalGroups()
 
 function goTo(index) 
 {
-  current = Math.max(0, Math.min(index, totalGroups() - 1));
-  const slideW = slides[0].offsetWidth + 24; // width + gap
-  track.style.transform = `translateX(-${current * slideW}px)`;
-  document.querySelectorAll('.slider-dot').forEach((d, i) => {
-    d.classList.toggle('active', i === current);
-  });
+    if(index >= slides.length)
+      index = 0;
+
+    if(index < 0)
+         index = slides.length - 1;
+
+    current = index;
+    const slideWidth = slides[0].offsetWidth + 24 //width + gap
+    track.style.transform = 'translateX(-${current * slideWidth}px);
 }
 
 document.getElementById('prevBtn').onclick = () => goTo(current - 1);
 document.getElementById('nextBtn').onclick = () => goTo(current + 1);
 
+window.addEventListener('resize', () => goTo(0));
 
 // contact form
-function submitForm() {
+function submitForm() 
+{
   const btn = document.querySelector('.btn-submit');
   btn.textContent = 'Message Sent ✓';
   btn.style.background = '#4a5240';
