@@ -146,14 +146,9 @@ function updateCartUI()
         </div>
       </div>
     `).join('');
-
-    // cartTotal.textContent = `$${getCartTotal().toFixed(2)}`;
-
-    document.querySelectorAll('.cart-remove-btn').forEach(btn => 
-      {
-        btn.addEventListener('click', () => removeFromCart(btn.dataset.name));
-      });
   }
+
+  cartTotal.textContent = `$${getCartTotal().toFixed(2)}`;
 }
 
 function toggleCart()
