@@ -147,7 +147,12 @@ function updateCartUI()
       </div>
     `).join('');
 
-    cartTotal.textContent = `$${getCartTotal().toFixed(2)}`;
+    // cartTotal.textContent = `$${getCartTotal().toFixed(2)}`;
+
+    document.querySelectorAll('.cart-remove-btn').forEach(btn => 
+      {
+        btn.addEventListener('click', () => removeFromCart(btn.CDATA_SECTION_NODE.name));
+      });
   }
 }
 
